@@ -1,0 +1,9 @@
+### CakePHP template
+# CakePHP 2
+
+/project/tmp/*
+/app/Config/core.php
+/app/Config/database.php
+/vendors/*
+
+# Created by .ignore support plugin (hsz.mobi)
