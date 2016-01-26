@@ -22,7 +22,12 @@
             <thead>
                 <tr>
                     <?php foreach ($fields as $field): ?>
-                        <th><?php echo "<?php echo \$this->Paginator->sort('{$field}'); ?>"; ?></th>
+                        <?php $_field = $field == $primaryKey ? '#' : $field ?>
+                        <?php if ($field == $primaryKey): ?>
+                            <th><?php echo "<?php echo \$this->Paginator->sort('{$field}', '{$_field}'); ?>"; ?></th>
+                        <?php else: ?>
+                            <th><?php echo "<?php echo \$this->Paginator->sort('{$field}'); ?>"; ?></th>
+                        <?php endif; ?>
                     <?php endforeach; ?>
                     <th class="actions"><?php echo "<?php echo __('Actions'); ?>"; ?></th>
                 </tr>
@@ -66,7 +71,7 @@
     </div>
     <div class="ui basic segment actions">
         <div class="ui">
-            <?php echo "<?php echo \$this->Html->link(\"<i class='add circle icon'></i> $singularHumanName\", array('action' => 'add'), array('class' => 'ui green button', 'escape' => false)); ?>"; ?>
+            <?php echo "<?php echo \$this->Html->link(\"<i class='add circle icon'></i> \" . __('" . $singularHumanName . "'), array('action' => 'add'), array('class' => 'ui green button', 'escape' => false)); ?>"; ?>
         </div>
     </div>
 </div>

@@ -19,6 +19,7 @@
 <div class="ui segment <?php echo $pluralVar; ?> form">
     <h1 class="ui header"><?php printf("<?php echo __('%s %s'); ?>", Inflector::humanize($action), $singularHumanName); ?></h1>
     <?php echo "<?php echo \$this->Form->create('{$modelClass}', array('id' => '{$pluralVar}','class' => 'ui form', 'novalidate')); ?>\n"; ?>
+
         <?php
         foreach ($fields as $field) {
             if (strpos($action, 'add') !== false && $field === $primaryKey) {
@@ -40,7 +41,7 @@
         }
         ?>
 
-    <br/>
+        <br/>
     <?php
     echo "\t<?php echo \$this->Form->button(__('Submit'), array('class' => 'ui green button')); ?>\n";
     echo "<?php echo \$this->Form->end(); ?>\n";
@@ -48,20 +49,20 @@
 </div>
 <div class="ui basic segment actions">
     <h3><?php echo "<?php echo __('Actions'); ?>"; ?></h3>
-    <div class="ui buttons">
 
-        <?php if (strpos($action, 'add') === false): ?>
-            <?php echo "<?php echo \$this->Form->postLink(__('Delete'), array('action' => 'delete', \$this->Form->value('{$modelClass}.{$primaryKey}')), array('class' => 'ui button', 'escape' => false,'confirm' => __('Are you sure you want to delete # %s?', \$this->Form->value('{$modelClass}.{$primaryKey}')))); ?>"; ?>
-        <?php endif; ?>
+    <?php if (strpos($action, 'add') === false): ?>
+        <?php echo "<?php echo \$this->Form->postLink(\"<i class='ui list black icon'></i> \" . __('Delete'), array('action' => 'delete', \$this->Form->value('{$modelClass}.{$primaryKey}')), array('class' => 'ui icon red button', 'escape' => false,'confirm' => __('Are you sure you want to delete # %s?', \$this->Form->value('{$modelClass}.{$primaryKey}')))); ?>\n"; ?>
+    <?php endif; ?>
 
-        <?php echo "<?php echo \$this->Html->link(__('List " . $pluralHumanName . "'), array('action' => 'index'), array('class' => 'ui button', 'escape' => false)); ?>"; ?>
+    <div class="ui icon buttons">
+        <?php echo "<?php echo \$this->Html->link(\"<i class='ui list black icon'></i> \" . __('" . $pluralHumanName . "'), array('action' => 'index'), array('class' => 'ui icon blue button', 'escape' => false)); ?>\n"; ?>
         <?php
         $done = array();
         foreach ($associations as $type => $data) {
             foreach ($data as $alias => $details) {
                 if ($details['controller'] != $this->name && !in_array($details['controller'], $done)) {
-                    echo "\t\t<?php echo \$this->Html->link(__('List " . Inflector::humanize($details['controller']) . "'), array('controller' => '{$details['controller']}', 'action' => 'index'), array('class' => 'ui button', 'escape' => false)); ?>\n";
-                    echo "\t\t<?php echo \$this->Html->link(__('New " . Inflector::humanize(Inflector::underscore($alias)) . "'), array('controller' => '{$details['controller']}', 'action' => 'add'), array('class' => 'ui button', 'escape' => false)); ?>\n";
+                    echo "\t\t<?php echo \$this->Html->link(\"<i class='ui list black icon'></i> \" . __('" . Inflector::humanize($details['controller']) . "'), array('controller' => '{$details['controller']}', 'action' => 'index'), array('class' => 'ui icon blue button', 'escape' => false)); ?>\n";
+                    echo "\t\t<?php echo \$this->Html->link(\"<i class='ui add black icon'></i> \" . __('" . Inflector::humanize(Inflector::underscore($alias)) . "'), array('controller' => '{$details['controller']}', 'action' => 'add'), array('class' => 'ui icon blue button', 'escape' => false)); ?>\n";
                     $done[] = $details['controller'];
                 }
             }

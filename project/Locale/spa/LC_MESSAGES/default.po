@@ -1,0 +1,32 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2012-10-22 10:52+0200\n"
+"PO-Revision-Date: 2014-01-13 13:35-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: Spanish\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+## APP ##
+msgid "Submit"
+msgstr "Guardar"
+
+msgid "Owner"
+msgstr "Propietario"
+
+msgid "Add Owner"
+msgstr "Nuevo Propietario"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Email"
+msgstr "Correo"
+
+msgid "Average Rating"
+msgstr "Calificación"
