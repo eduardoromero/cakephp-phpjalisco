@@ -170,7 +170,7 @@
 
 <!-- Page Contents -->
 <div class="pusher">
-    <div class="ui inverted vertical center aligned segment">
+    <div class="ui inverted vertical masthead center aligned segment">
 
         <div class="ui container">
             <div class="ui large secondary inverted pointing menu">
@@ -185,16 +185,21 @@
                 </div>
             </div>
         </div>
+
+        <div class="ui text container">
+            <h1 class="ui inverted header">
+                CakeBnB
+            </h1>
+            <h2>Get the Cake you absolutely want.</h2>
+            <div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
+        </div>
+
     </div>
 
     <div id="main">
-        <div class="ui container">
-            <div class="ui basic segment">
-                <?php echo $this->Flash->render(); ?>
+        <?php echo $this->Flash->render(); ?>
 
-                <?php echo $this->fetch('content'); ?>
-            </div>
-        </div>
+        <?php echo $this->fetch('content'); ?>
     </div>
 
     <div class="ui inverted vertical footer segment" id="footer">
