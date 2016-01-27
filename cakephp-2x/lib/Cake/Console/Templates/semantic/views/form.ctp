@@ -18,7 +18,7 @@
 
 <div class="ui segment <?php echo $pluralVar; ?> form">
     <h1 class="ui header"><?php printf("<?php echo __('%s %s'); ?>", Inflector::humanize($action), $singularHumanName); ?></h1>
-    <?php echo "<?php echo \$this->Form->create('{$modelClass}', array('id' => '{$pluralVar}','class' => 'ui form', 'novalidate')); ?>\n"; ?>
+    <?php echo "<?php echo \$this->Form->create('{$modelClass}', array('id' => '{$pluralVar}','class' => 'ui form', 'novalidate', 'inputDefaults' => array('div' => false, 'error' => array('attributes' => array('wrap' => 'div', 'class' => 'ui basic red pointing prompt label transition visible'))))); ?>\n"; ?>
 
         <?php
         foreach ($fields as $field) {
