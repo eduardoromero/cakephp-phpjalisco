@@ -217,5 +217,12 @@
 <?php
     echo $this->fetch('script_bottom');
 ?>
+<script type="application/javascript">
+    $(document).ready(function () {
+        $('.rating.review')
+            .rating('disable')
+        ;
+    });
+</script>
 </body>
 </html>

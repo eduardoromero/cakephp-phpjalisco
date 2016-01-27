@@ -28,5 +28,20 @@ msgstr "Nombre"
 msgid "Email"
 msgstr "Correo"
 
+msgid "Title"
+msgstr "Títuo o Descripción de la Propiedad"
+
+msgid "City"
+msgstr "Ciudad"
+
+msgid "State"
+msgstr "Estado"
+
 msgid "Average Rating"
 msgstr "Calificación"
+
+msgid "Fee"
+msgstr "Precio"
+
+msgid "Promoted"
+msgstr "Promocionar"

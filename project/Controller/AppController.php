@@ -31,5 +31,17 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-    public $components = ['Flash', 'Session', 'DebugKit.Toolbar', 'RequestHandler'];
+    public $components = ['Flash', 'Session', 'Cookie', 'DebugKit.Toolbar', 'RequestHandler'];
+    public $config = [];
+
+    public function beforeFilter() {
+        $this->_load_app_config();
+    }
+
+    protected function _load_app_config() {
+        /* Carga project/Config/Sistema/config.php */
+        Configure::load('App/config');
+        $this->config = Configure::read('app');
+        $this->set('config', $this->config);
+    }
 }

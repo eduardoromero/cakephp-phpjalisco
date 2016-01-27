@@ -30,4 +30,14 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+    public function blank() {
+        $fields = $this->schema();
+
+        if(is_array($fields)) {
+            return array($this->name => array_fill_keys(array_keys($fields), null));
+        } else {
+            return false;
+        }
+    }
 }
