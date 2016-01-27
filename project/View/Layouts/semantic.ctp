@@ -222,6 +222,16 @@
         $('.rating.review')
             .rating('disable')
         ;
+
+        $('.search.dropdown')
+            .dropdown({
+                transition: 'drop'
+            })
+        ;
+
+        $('.ui.checkbox')
+            .checkbox()
+        ;
     });
 </script>
 </body>

@@ -36,6 +36,7 @@ class AppController extends Controller {
 
     public function beforeFilter() {
         $this->_load_app_config();
+        $this->_is_ajax();
     }
 
     protected function _load_app_config() {
@@ -43,5 +44,12 @@ class AppController extends Controller {
         Configure::load('App/config');
         $this->config = Configure::read('app');
         $this->set('config', $this->config);
+    }
+
+    protected function _is_ajax() {
+        if($this->request->is('json') || $this->request->is('ajax')) {
+            $this->response->header('Access-Control-Allow-Origin', '*');
+            $this->response->type('json');
+        }
     }
 }
