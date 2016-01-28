@@ -151,7 +151,7 @@
 <div class="ui large top fixed hidden menu">
     <div class="ui container">
         <a class="active item">Home</a>
-        <a class="item">Rentals</a>
+        <a class="item" href="<?php echo Router::url(array('controller' => 'rentals', 'action' => 'index')); ?>">Rentals</a>
         <div class="right menu">
             <div class="item">
                 <a class="ui button">Log in</a>
@@ -163,7 +163,7 @@
 <!-- Sidebar Menu -->
 <div class="ui vertical inverted sidebar menu">
     <a class="active item">Home</a>
-    <a class="item">Rentals</a>
+    <a class="item" href="<?php echo Router::url(array('controller' => 'rentals', 'action' => 'index')); ?>">Rentals</a>
     <a class="item">Login</a>
 </div>
 
@@ -178,7 +178,7 @@
                     <i class="sidebar icon"></i>
                 </a>
                 <a class="active item">Home</a>
-                <a class="item">Rentals</a>
+                <a class="item" href="<?php echo Router::url(array('controller' => 'rentals', 'action' => 'index')); ?>">Rentals</a>
 
                 <div class="right item">
                     <a class="ui inverted button">Log in</a>
