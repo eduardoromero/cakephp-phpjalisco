@@ -7,6 +7,8 @@
 
     <?php echo $this->Form->create('Rental', array('id' => 'rentals', 'class' => 'ui form', 'novalidate', 'inputDefaults' => array('div' => false, 'error' => array('attributes' => array('wrap' => 'div', 'class' => 'ui basic red pointing prompt label transition visible'))))); ?>
 
+    <?php echo $this->Form->input('id'); ?>
+
     <?php $input_error = $this->Form->isFieldError('title') ? 'error' : ''; ?>
     <div class='field <?php echo $input_error ?>'>
         <?php echo $this->Form->input('title'); ?>
@@ -35,12 +37,12 @@
     <div class="two fields">
         <?php $input_error = $this->Form->isFieldError('state_id') ? 'error' : ''; ?>
         <div class='field <?php echo $input_error ?>'>
-            <?php echo $this->Form->input('state_id', array('options' => $config['lists']['states'], 'default' => 14, 'class' => 'ui search selection fluid dropdown')); ?>
+            <?php echo $this->Form->input('state_id', array('options' => $config['lists']['states'], 'default' => 14, 'class' => 'ui search selection fluid state')); ?>
         </div>
 
         <?php $input_error = $this->Form->isFieldError('city_id') ? 'error' : ''; ?>
         <div class='field <?php echo $input_error ?>'>
-            <?php echo $this->Form->input('city_id', array('options' => array(), 'class' => 'ui search selection fluid dropdown')); ?>
+            <?php echo $this->Form->input('city_id', array('options' => $cities, 'class' => 'ui search selection fluid city')); ?>
         </div>
     </div>
 
@@ -58,7 +60,7 @@
         <div class="two fields">
             <?php $input_error = $this->Form->isFieldError('fee') ? 'error' : ''; ?>
             <div class='field <?php echo $input_error ?>'>
-                <?php echo $this->Form->input('fee'); ?>
+                <?php echo $this->Form->input('fee', array('type' => 'text')); ?>
             </div>
 
             <?php $input_error = $this->Form->isFieldError('promoted') ? 'error' : ''; ?>
@@ -77,24 +79,23 @@
 <br/>
 <?php echo $this->Form->button(__('Submit'), array('class' => 'ui green button')); ?>
 <?php echo $this->Form->end(); ?>
-</div>
+
 <div class="ui basic segment actions">
     <h3><?php echo __('Actions'); ?></h3>
 
-    
     <div class="ui icon buttons">
         <?php echo $this->Html->link("<i class='ui list black icon'></i> " . __('Rentals'), array('action' => 'index'), array('class' => 'ui icon blue button', 'escape' => false)); ?>
         <?php echo $this->Html->link("<i class='ui list black icon'></i> " . __('Owners'), array('controller' => 'owners', 'action' => 'index'), array('class' => 'ui icon blue button', 'escape' => false)); ?>
-        <?php echo $this->Html->link("<i class='ui add black icon'></i> " . __('Owner'), array('controller' => 'owners', 'action' => 'add'), array('class' => 'ui icon blue button', 'escape' => false)); ?>
-        <?php echo $this->Html->link("<i class='ui list black icon'></i> " . __('Media'), array('controller' => 'media', 'action' => 'index'), array('class' => 'ui icon blue button', 'escape' => false)); ?>
-        <?php echo $this->Html->link("<i class='ui add black icon'></i> " . __('Media'), array('controller' => 'media', 'action' => 'add'), array('class' => 'ui icon blue button', 'escape' => false)); ?>
-        <?php echo $this->Html->link("<i class='ui list black icon'></i> " . __('Ratings'), array('controller' => 'ratings', 'action' => 'index'), array('class' => 'ui icon blue button', 'escape' => false)); ?>
-        <?php echo $this->Html->link("<i class='ui add black icon'></i> " . __('Rating'), array('controller' => 'ratings', 'action' => 'add'), array('class' => 'ui icon blue button', 'escape' => false)); ?>
     </div>
 </div>
 
-<?php echo $this->Html->script('/js/maskedinput/jquery.maskedinput.min'); ?>
+<?php echo $this->Html->script('maskedinput/jquery.maskedinput.min'); ?>
+<?php echo $this->Html->script('inputmask/jquery.inputmask.bundle.min'); ?>
+<?php echo $this->Html->script('app/rentals.js'); ?>
 <script type="application/javascript">
+    var cities_url = '<?php echo Router::url(array('controller' => 'cities', 'action' => 'autocomplete'), true) ?>/';
+    var current_city = <?php echo (int) $this->Form->value('state_id'); ?>;
+
     $(document).ready(function () {
         var rules = {
             titulo: {
@@ -161,5 +162,16 @@
             })
         ;
 
+        $('.search.dropdown')
+            .dropdown({
+                transition: 'drop'
+            })
+        ;
+
+        $('.ui.checkbox')
+            .checkbox()
+        ;
+
+        // see rentals.js for more JS
     });
 </script>

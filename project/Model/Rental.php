@@ -98,6 +98,13 @@ class Rental extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
+		),
+		'City' => array(
+			'className' => 'City',
+			'foreignKey' => 'city_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
 		)
 	);
 

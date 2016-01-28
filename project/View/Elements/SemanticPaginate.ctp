@@ -4,7 +4,7 @@
 <tfoot>
 <tr>
     <th colspan="9">
-        <div class="ui right floated pagination menu">
+        <div class="ui pagination menu">
                 <div class="ui pagination menu">
                     <!-- prev -->
                     <?php if($this->Paginator->hasPrev()) : ?>

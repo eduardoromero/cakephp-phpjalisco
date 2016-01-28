@@ -6,8 +6,9 @@ App::uses('AppController', 'Controller');
  * @property City $City
  * @property PaginatorComponent $Paginator
  */
-class CitiesController extends AppController {
+class CitiesV1Controller extends AppController {
 
+	public $uses = ['City'];
 /**
  * index method
  *
@@ -15,12 +16,8 @@ class CitiesController extends AppController {
  */
 	public function index() {
 		$this->City->recursive = 0;
-
-        /* get params from URLs */
-        $this->Paginator->settings['paramType'] = 'querystring';
-        $this->Paginator->settings = array('limit' => 5);
-
-		$this->set('cities', $this->Paginator->paginate());
+		$this->set('cities', $this->City->find('all'));
+		$this->set('_serialize', array('cities'));
 	}
 
     public function autocomplete($state_id = null, $autocomplete = '') {
@@ -37,7 +34,8 @@ class CitiesController extends AppController {
 
         $cities = $this->City->find('list', array('conditions' => ['state_id' => $state_id, 'city LIKE' => "$autocomplete%"]));
 
-        $this->set(compact('cities', 'state_id', 'autocomplete'));
+        $this->set('cities', $cities);
+        $this->set('_serialize', array('cities'));
     }
 
 /**
@@ -53,6 +51,7 @@ class CitiesController extends AppController {
 		}
 		$options = array('conditions' => array('City.' . $this->City->primaryKey => $id));
 		$this->set('city', $this->City->find('first', $options));
+        $this->set('_serialize', array('city'));
 	}
 
 /**
