@@ -9,11 +9,7 @@ App::uses('AppController', 'Controller');
 class CitiesV1Controller extends AppController {
 
 	public $uses = ['City'];
-/**
- * index method
- *
- * @return void
- */
+
 	public function index() {
 		$this->City->recursive = 0;
 		$this->set('cities', $this->City->find('all'));
@@ -38,13 +34,6 @@ class CitiesV1Controller extends AppController {
         $this->set('_serialize', array('cities'));
     }
 
-/**
- * view method
- *
- * @throws NotFoundException
- * @param string $id
- * @return void
- */
 	public function view($id = null) {
 		if (!$this->City->exists($id)) {
 			throw new NotFoundException(__('Invalid city'));

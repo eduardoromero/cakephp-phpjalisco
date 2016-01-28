@@ -28,7 +28,7 @@ class CitiesController extends AppController {
 
         /* catch params */
         if(isset($this->request->query['state_id']) && ($q = trim($this->request->query['state_id'])) && is_numeric($q)) {
-            $state_id = $this->request->query['state_id'];
+            $state_id = $this->request->query['state_id']; // $param1 = $_REQUEST['param1']
         }
 
         if(isset($this->request->query['q']) && ($q = trim($this->request->query['q'])) && strlen($q)) {
@@ -36,7 +36,6 @@ class CitiesController extends AppController {
         }
 
         $cities = $this->City->find('list', array('conditions' => ['state_id' => $state_id, 'city LIKE' => "$autocomplete%"]));
-
         $this->set(compact('cities', 'state_id', 'autocomplete'));
     }
 

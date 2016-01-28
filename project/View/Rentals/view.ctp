@@ -188,9 +188,6 @@
                 <th><?php echo __('Username'); ?></th>
                 <th><?php echo __('Rating'); ?></th>
                 <th><?php echo __('Comment'); ?></th>
-                <th><?php echo __('Created'); ?></th>
-                <th><?php echo __('Rental Id'); ?></th>
-                <th class="actions"><?php echo __('Actions'); ?></th>
             </tr>
             </thead>
             <tbody>
@@ -198,15 +195,12 @@
                 <tr>
                     <td><?php echo $rating['id']; ?></td>
                     <td><?php echo $rating['username']; ?></td>
-                    <td><?php echo $rating['rating']; ?></td>
+                    <td><?php echo $this->element('rating', array(
+                                'review_rating' => $rating['rating'],
+                                'review_rating_star' => 'star'
+                            )
+                        ); ?></td>
                     <td><?php echo $rating['comment']; ?></td>
-                    <td><?php echo $rating['created']; ?></td>
-                    <td><?php echo $rating['rental_id']; ?></td>
-                    <td class="actions">
-                        <?php echo $this->Html->link("<i class='ui list black icon'></i> ", array('controller' => 'ratings', 'action' => 'view', $rating['id']), array('class' => 'ui icon button', 'escape' => false,)); ?>
-                        <?php echo $this->Html->link("<i class='write icon'></i>", array('controller' => 'ratings', 'action' => 'edit', $rating['id']), array('class' => 'ui icon button', 'escape' => false,)); ?>
-                        <?php echo $this->Form->postLink("<i class='minus circle icon'></i>", array('controller' => 'ratings', 'action' => 'delete', $rating['id']), array('class' => 'ui icon button', 'escape' => false, 'confirm' => __('Are you sure you want to delete # %s?', $rating['id']))); ?>
-                    </td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
