@@ -10,6 +10,9 @@ if($success) {
         'review_rating'      => $rental['Rental']['average_rating'],
         'review_rating_star' => 'star',
     ));
+
+    /* add state */
+    $rental['City']['state'] = $config['lists']['states'][$rental['City']['state_id']];
 }
 
 $response = [
