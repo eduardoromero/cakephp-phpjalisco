@@ -48,8 +48,6 @@ class RentalsController extends AppController {
 		}
 		$options = array('conditions' => array('Rental.' . $this->Rental->primaryKey => $id));
 		$this->set('rental', $this->Rental->find('first', $options));
-
-		$this->set('_serialize', array('rental'));
 	}
 
 /**
