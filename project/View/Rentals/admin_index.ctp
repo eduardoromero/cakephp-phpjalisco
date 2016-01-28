@@ -34,8 +34,8 @@
                     <td>
                         <?php echo $this->Html->link($rental['Owner']['name'], array('controller' => 'owners', 'action' => 'view', $rental['Owner']['id'])); ?>
                     </td>
-                    <td><?php echo h($rental['Rental']['state_id']); ?>&nbsp;</td>
-                    <td><?php echo h($rental['Rental']['city_id']); ?>&nbsp;</td>
+                    <td><?php echo h($config['lists']['states'][$rental['Rental']['state_id']]); ?>&nbsp;</td>
+                    <td><?php echo h($rental['City']['city']); ?>&nbsp;</td>
                     <td class="center aligned"><?php echo $rental['Rental']['promoted'] ? '<i class="ui green checkmark icon"></i>' : '<i class="ui red close icon"></i>'; ?>&nbsp;</td>
                     <td><?php echo h($rental['Rental']['modified']); ?>&nbsp;</td>
                     <td class="actions center aligned align-center">

@@ -2,53 +2,35 @@
 <div class="ui fluid segment">
     <div class="rentals index">
         <h2 class="ui header"><?php echo __('Rentals'); ?></h2>
-        <table class="ui celled striped table">
-            <thead>
-            <tr>
-                <th><?php echo $this->Paginator->sort('title'); ?></th>
-                <th><?php echo $this->Paginator->sort('lat'); ?></th>
-                <th><?php echo $this->Paginator->sort('lon'); ?></th>
-                <th><?php echo $this->Paginator->sort('fee'); ?></th>
-                <th><?php echo $this->Paginator->sort('average_rating'); ?></th>
-                <th><?php echo $this->Paginator->sort('owner_id'); ?></th>
-                <th><?php echo $this->Paginator->sort('state_id'); ?></th>
-                <th><?php echo $this->Paginator->sort('city_id'); ?></th>
-                <th><?php echo $this->Paginator->sort('promoted'); ?></th>
-                <th><?php echo $this->Paginator->sort('created'); ?></th>
-                <th class="actions"><?php echo __('Actions'); ?></th>
-            </tr>
-            </thead>
-            <tbody>
+
+        <div class="ui four cards">
             <?php foreach ($rentals as $rental): ?>
-                <tr>
-                    <td><?php echo h($rental['Rental']['title']); ?>&nbsp;</td>
-                    <td><?php echo h($rental['Rental']['lat']); ?>&nbsp;</td>
-                    <td><?php echo h($rental['Rental']['lon']); ?>&nbsp;</td>
-                    <td><?php echo $this->Number->currency($rental['Rental']['fee']); ?>&nbsp;</td>
-                    <td><?php echo $this->element('rating', array(
+                <a class="card" href="<?php echo Router::url(array('action' => 'view', $rental['Rental']['id']), true);?>">
+                    <div class="content">
+                        <div class="header"><?php echo h($this->Text->truncate($rental['Rental']['title'], 24)); ?></div>
+                        <div class="meta">
+                            <span
+                                class="right floated time"><?php echo $this->Number->currency($rental['Rental']['fee']); ?></span>
+                            <span class="category"><?php echo h($rental['City']['city']); ?></span>
+                        </div>
+                        <div class="description">
+                            <p>
+                                <?php
+                                    echo nl2br($rental['Rental']['domicilio']);
+                                ?>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <?php echo $this->element('rating', array(
                                 'review_rating' => $rental['Rental']['average_rating'],
                                 'review_rating_star' => 'star'
                             )
                         ); ?>
-                    </td>
-                    <td>
-                        <?php echo $this->Html->link($rental['Owner']['name'], array('controller' => 'owners', 'action' => 'view', $rental['Owner']['id'])); ?>
-                    </td>
-                    <td><?php echo h($rental['Rental']['state_id']); ?>&nbsp;</td>
-                    <td><?php echo h($rental['Rental']['city_id']); ?>&nbsp;</td>
-                    <td class="center aligned"><?php echo $rental['Rental']['promoted'] ? '<i class="ui green checkmark icon"></i>' : '<i class="ui red close icon"></i>'; ?>&nbsp;</td>
-                    <td><?php echo h($rental['Rental']['modified']); ?>&nbsp;</td>
-                    <td class="actions center aligned align-center">
-                        <div class="ui icon buttons">
-                            <?php echo $this->Html->link("<i class='zoom icon'></i>", array('action' => 'view', $rental['Rental']['id']), array('class' => 'ui blue button', 'escape' => false)); ?>
-                            <?php echo $this->Html->link("<i class='write icon'></i>", array('action' => 'edit', $rental['Rental']['id']), array('class' => 'ui green button', 'escape' => false)); ?>
-                            <?php echo $this->Form->postLink("<i class='minus circle icon'></i>", array('action' => 'delete', $rental['Rental']['id']), array('class' => 'ui red button', 'escape' => false, 'confirm' => __('Are you sure you want to delete # %s?', $rental['Rental']['id']))); ?>
-                        </div>
-                    </td>
-                </tr>
+                    </div>
+                </a>
             <?php endforeach; ?>
-            </tbody>
-        </table>
+        </div>
 
         <?php echo $this->element('SemanticPaginate'); ?>
     </div>
